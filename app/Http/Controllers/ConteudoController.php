@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Conteudo;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class ConteudoController extends Controller
 {
@@ -12,16 +14,9 @@ class ConteudoController extends Controller
         return view('blog.adicionarConteudo');
     }
 
-    public function indexAdmin()
-    {
-        return view('admin.index');
-    }
-
     public function criarConteudo(Request $request)
     {
-    $criarConteudo = $request->all();
-     //dd($criarConteudo);   
-
+    $criarConteudo = $request->all();   
         if ($request->hasFile('file_path')) { 
 
             $request->validate([
@@ -36,7 +31,24 @@ class ConteudoController extends Controller
                 $criarConteudo = $request->all();
                 Conteudo::create($criarConteudo);
             }
-            return view('admin.index');
+            return redirect('/menu/TodosConteudos');
+    }
+
+    public function index(Request $request)
+    {
+        $qtd = $request['qtd'] ?: 6;
+        $page = $request['page'] ?: 1;
+        $buscar = $request['buscar'];
+        Paginator::currentPageResolver(function () use ($page){
+            return $page;
+        });
+        if($buscar){
+            $verTodos = DB::table('conteudo')->where('titulo', '=', $buscar)->orderBy('created_at', 'desc')->paginate($qtd);
+        }else{
+            $verTodos = DB::table('conteudo')->orderBy('created_at', 'desc')->paginate($qtd);
+        }
+
+        return view('admin.index', compact('verTodos'));
     }
     
 }
