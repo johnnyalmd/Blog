@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/adicionar/conteudoBlog',[App\Http\Controllers\ConteudoController::class, 'adicionarConteudo'])->name('adicionarConteudo');
-Route::get('/menu/TodosConteudos',[App\Http\Controllers\ConteudoController::class, 'indexAdmin'])->name('index');
+Route::get('/menu/TodosConteudos',[App\Http\Controllers\ConteudoController::class, 'index'])->name('index');
 Route::post('/cadastrarConteudo', [App\Http\Controllers\ConteudoController::class, 'criarConteudo'])->name('criarConteudo');

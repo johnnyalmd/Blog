@@ -8394,11 +8394,35 @@ a[data-toggle="collapse"] {
   color: #fff;
   transform: translateX(-10px);
 }
+.button3 {
+  padding: 1.0em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #44bef1;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+.button3:hover {
+  background-color: #434546;
+  box-shadow: 0px 15px 20px #44bef1;
+  color: #fff;
+  transform: translateX(-10px);
+}
 
 .button1:active {
   transform: translateY(-1px);
 }
 .button2:active {
+  transform: translateY(-1px);
+}
+.button3:active {
   transform: translateY(-1px);
 }
 
